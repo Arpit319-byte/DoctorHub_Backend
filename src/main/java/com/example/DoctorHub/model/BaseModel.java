@@ -1,7 +1,6 @@
 package com.example.DoctorHub.model;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,8 +17,8 @@ import lombok.NoArgsConstructor;
 public abstract class BaseModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String id;
     
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
