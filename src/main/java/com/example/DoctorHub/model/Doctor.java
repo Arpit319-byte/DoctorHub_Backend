@@ -1,5 +1,6 @@
 package com.example.DoctorHub.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -18,7 +19,7 @@ import lombok.Setter;
 @Entity
 public class Doctor extends BaseModel {
     
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id" , nullable = false,unique = true)
     private User user;
 
@@ -27,5 +28,8 @@ public class Doctor extends BaseModel {
 
     @Column(name = "license_number" , nullable = false)
     private String licenseNumber;
+
+    @Column(name = "rating")
+    private String rating;
     
 }
