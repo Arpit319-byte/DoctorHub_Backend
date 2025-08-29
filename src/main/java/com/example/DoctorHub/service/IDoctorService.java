@@ -36,10 +36,10 @@ public interface IDoctorService {
      */
     List<DoctorResponseDTO> getDoctorsBySpecialty(String specialty);
     
-    /**
-     * Get doctors by location
-     */
-    List<DoctorResponseDTO> getDoctorsByLocation(String location);
+    // /**
+    //  * Get doctors by location
+    //  */
+    // List<DoctorResponseDTO> getDoctorsByLocation(String location);
     
     /**
      * Get available doctors for a specific date and time
@@ -49,7 +49,7 @@ public interface IDoctorService {
     /**
      * Verify doctor license
      */
-    void verifyDoctorLicense(String doctorId, String licenseNumber);
+    boolean verifyDoctorLicense(String doctorId, String licenseNumber);
     
     /**
      * Update doctor availability

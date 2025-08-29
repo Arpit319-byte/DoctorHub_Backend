@@ -30,6 +30,6 @@ public class Doctor extends BaseModel {
     private String licenseNumber;
 
     @Column(name = "rating")
-    private String rating;
+    private Double rating;
     
 }

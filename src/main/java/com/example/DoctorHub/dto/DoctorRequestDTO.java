@@ -29,4 +29,6 @@ public class DoctorRequestDTO {
     
     @NotBlank(message = "License number is required")
     private String licenseNumber;
+
+    private Double rating;
 }
