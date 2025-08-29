@@ -17,7 +17,7 @@ public class Mapper {
         doctorResponseDTO.setEmail(doctor.getUser().getEmail());
         doctorResponseDTO.setSpecialty(doctor.getSpecialization());
         doctorResponseDTO.setLicenseNumber(doctor.getLicenseNumber());
-        doctorResponseDTO.setRating(doctor.getRating() != null ? Double.parseDouble(doctor.getRating()) : null);
+        doctorResponseDTO.setRating(doctor.getRating() != null ? doctor.getRating() : null);
         doctorResponseDTO.setCreatedAt(doctor.getCreatedAt());
         doctorResponseDTO.setUpdatedAt(doctor.getUpdatedAt());
         return doctorResponseDTO;

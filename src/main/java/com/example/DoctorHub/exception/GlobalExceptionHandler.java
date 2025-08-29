@@ -22,6 +22,18 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<ErrorResponseDTO> handleUserNotFoundException(UserNotFoundException ex) {
+        ErrorResponseDTO errorResponse = new ErrorResponseDTO(
+            HttpStatus.NOT_FOUND.value(),
+            "User Not Found",
+            ex.getMessage(),
+            "/api/users"
+        );
+        
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+    }
+
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<ErrorResponseDTO> handleRuntimeException(RuntimeException ex) {
         ErrorResponseDTO errorResponse = new ErrorResponseDTO(

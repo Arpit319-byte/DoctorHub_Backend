@@ -43,9 +43,11 @@ public class DoctorService implements IDoctorService{
     }
 
     @Override
-    public void deleteDoctor(String id) {
+    public boolean deleteDoctor(String id) {
+        Doctor doctor = doctorRepository.findById(id)
+            .orElseThrow(() -> new DoctorNotFoundException("Doctor with ID " + id + " not found"));
         doctorRepository.deleteById(id);
-        return;
+        return true;
     }
 
     @Override
@@ -57,12 +59,6 @@ public class DoctorService implements IDoctorService{
     public List<DoctorResponseDTO> getDoctorsBySpecialty(String specialty) {
         return doctorRepository.findBySpecialization(specialty).stream().map(Mapper::toDoctorResponseDTO).collect(Collectors.toList());
     }
-
-    // @Override
-    // public List<DoctorResponseDTO> getDoctorsByLocation(String location) {
-    //     // TODO Auto-generated method stub
-    //     throw new UnsupportedOperationException("Unimplemented method 'getDoctorsByLocation'");
-    // }
 
     @Override
     public List<DoctorResponseDTO> getAvailableDoctors(String date, String time) {
@@ -89,14 +85,17 @@ public class DoctorService implements IDoctorService{
 
     @Override
     public double getDoctorRating(String doctorId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getDoctorRating'");
+        Doctor doctor = doctorRepository.findById(doctorId)
+            .orElseThrow(() -> new DoctorNotFoundException("Doctor with ID " + doctorId + " not found"));
+        return doctor.getRating();
     }
 
     @Override
     public List<DoctorResponseDTO> getTopRatedDoctors(int limit) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getTopRatedDoctors'");
+        return doctorRepository.findAllOrderByRatingDescAndLimit(limit)
+            .stream()
+            .map(Mapper::toDoctorResponseDTO)
+            .collect(Collectors.toList());
     }
 
     

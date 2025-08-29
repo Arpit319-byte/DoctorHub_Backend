@@ -24,7 +24,7 @@ public interface IDoctorService {
     /**
      * Delete doctor by ID
      */
-    void deleteDoctor(String id);
+    boolean deleteDoctor(String id);
     
     /**
      * Get all doctors
