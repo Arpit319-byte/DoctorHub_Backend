@@ -1,5 +1,8 @@
 package com.example.DoctorHub.model;
 
+import com.example.DoctorHub.Enum.AppointmentStatus;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
@@ -28,6 +31,7 @@ public class Appointment extends BaseModel {
     @OneToOne
     @JoinColumn(name = "patient_id" , nullable = false)
     private User patient;
-    
-    
+
+    @Column(nullable = false)
+    private AppointmentStatus appointmentStatus;
 }

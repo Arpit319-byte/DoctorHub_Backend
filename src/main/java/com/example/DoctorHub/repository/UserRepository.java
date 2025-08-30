@@ -24,7 +24,7 @@ public interface UserRepository extends JpaRepository<User, String> {
     List<User> findByRole(Role role);
     
     // Find users by role string (for flexibility)
-    @Query("SELECT u FROM User u WHERE u.role = :role")
+    @Query(value = "SELECT * FROM user u WHERE u.role = :role", nativeQuery = true)
     List<User> findByRoleString(@Param("role") String role);
     
     // Find active users (if you add an active field later)

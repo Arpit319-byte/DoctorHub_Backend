@@ -34,6 +34,30 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 
+    @ExceptionHandler(AppointmentNotFoundException.class)
+    public ResponseEntity<ErrorResponseDTO> handleAppointmentNotFoundException(AppointmentNotFoundException ex) {
+        ErrorResponseDTO errorResponse = new ErrorResponseDTO(
+            HttpStatus.NOT_FOUND.value(),
+            "Appointment Not Found",
+            ex.getMessage(),
+            "/api/appointments"
+        );
+        
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+    }
+
+    @ExceptionHandler(AppointmentSlotNotFoundException.class)
+    public ResponseEntity<ErrorResponseDTO> handleAppointmentSlotNotFoundException(AppointmentSlotNotFoundException ex) {
+        ErrorResponseDTO errorResponse = new ErrorResponseDTO(
+            HttpStatus.NOT_FOUND.value(),
+            "Appointment Slot Not Found",
+            ex.getMessage(),
+            "/api/appointment-slots"
+        );
+        
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+    }
+
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<ErrorResponseDTO> handleRuntimeException(RuntimeException ex) {
         ErrorResponseDTO errorResponse = new ErrorResponseDTO(
